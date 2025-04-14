@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1uuxna7atv1k"]
+
+[ext_resource type="Texture2D" uid="uid://bhx2o51g3i6wv" path="res://sprites/bossSprites/Idle.png" id="1_ui0rw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd6fg"]
+atlas = ExtResource("1_ui0rw")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4jxe"]
+atlas = ExtResource("1_ui0rw")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i58xc"]
+atlas = ExtResource("1_ui0rw")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v6fu"]
+atlas = ExtResource("1_ui0rw")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq7rc"]
+atlas = ExtResource("1_ui0rw")
+region = Rect2(800, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lewly"]
+atlas = ExtResource("1_ui0rw")
+region = Rect2(1000, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i02b"]
+atlas = ExtResource("1_ui0rw")
+region = Rect2(1200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2li27"]
+atlas = ExtResource("1_ui0rw")
+region = Rect2(1400, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_boir8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd6fg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4jxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i58xc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq7rc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lewly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i02b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2li27")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j4kla"]
+radius = 18.0
+height = 56.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_boir8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_j4kla")
