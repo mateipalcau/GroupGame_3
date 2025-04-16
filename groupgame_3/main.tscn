@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://tan30rl77rxp"]
 
 [ext_resource type="PackedScene" uid="uid://cr4utg17ocbia" path="res://map.tscn" id="1_svrpu"]
-[ext_resource type="PackedScene" uid="uid://bqrt3dx5osaut" path="res://hero.tscn" id="2_2ohsh"]
+[ext_resource type="PackedScene" uid="uid://bqrt3dx5osaut" path="res://mainHero/hero.tscn" id="2_2ohsh"]
 
 [node name="Main" type="Node2D"]
 
@@ -10,3 +10,4 @@ position = Vector2(14, 59)
 
 [node name="Map" parent="." instance=ExtResource("1_svrpu")]
 position = Vector2(-67, -3)
+scale = Vector2(3.08898, 2.75528)
