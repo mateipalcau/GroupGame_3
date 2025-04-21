@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6pjye7a48hr3"]
+
+[ext_resource type="Script" uid="uid://d1323epadelql" path="res://GD/trail.gd" id="1_uv02k"]
+
+[node name="Trail" type="Line2D"]
+script = ExtResource("1_uv02k")
