@@ -13,3 +13,7 @@ config_version=5
 config/name="GroupGame_3"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[global_group]
+
+Player=""
