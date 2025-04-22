@@ -279,7 +279,7 @@ monitoring = false
 position = Vector2(63.5, 0.5)
 shape = SubResource("RectangleShape2D_8bk0b")
 
-[node name="SpriteOffset" type="Node2D" parent="."]
+[node name="SpriteOffset" type="Node2D" parent="." groups=["Player"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOffset"]
 texture_filter = 1
