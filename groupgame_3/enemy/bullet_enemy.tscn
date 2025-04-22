@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqd2oupahthss"]
 
-[ext_resource type="Script" path="res://bullet_enemy.gd" id="1_ts1ii"]
+[ext_resource type="Script" path="res://enemy/bullet_enemy.gd" id="1_ts1ii"]
 [ext_resource type="Texture2D" uid="uid://d1ymyi5bedq1c" path="res://conjure_ball_lightning.png" id="2_1wsy6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xowhm"]

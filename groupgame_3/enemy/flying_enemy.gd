@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @export var move_distance: float = 200.0
 @export var shoot_cooldown: float = 2.0
-var bullet_scene = preload("res://bullet_flying_enemy.tscn")
+var bullet_scene = preload("res://enemy/bullet_flying_enemy.tscn")
 
 var direction: int = 1
 var start_position: Vector2

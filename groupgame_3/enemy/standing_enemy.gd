@@ -10,7 +10,7 @@ extends CharacterBody2D
 
 @export var damage: int = 20
 
-var projectile = preload("res://bullet_enemy.tscn")
+var projectile = preload("res://enemy/bullet_enemy.tscn")
 var gravity = ProjectSettings.get("physics/2d/default_gravity")
 
 var health: int = 50  

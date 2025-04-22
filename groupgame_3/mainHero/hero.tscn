@@ -264,6 +264,7 @@ animations = [{
 }]
 
 [node name="Hero" type="CharacterBody2D"]
+scale = Vector2(0.666667, 0.679012)
 script = ExtResource("1_qgchj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -271,6 +272,8 @@ texture_filter = 1
 shape = SubResource("RectangleShape2D_1r3ed")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(13.5, 13.2545)
+zoom = Vector2(1.5, 1.5)
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://kx2eddxdo7n1"]
 
-[ext_resource type="Script" path="res://bullet_flying_enemy.gd" id="1_wrvsw"]
+[ext_resource type="Script" path="res://enemy/bullet_flying_enemy.gd" id="1_wrvsw"]
 [ext_resource type="Texture2D" uid="uid://bkorbyvhkjcmi" path="res://lehudibs_crystal_spear.png" id="2_xpamk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3yq8"]

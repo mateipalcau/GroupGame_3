@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://cso06f5ac0p2o"]
 
-[ext_resource type="Script" path="res://standing_enemy.gd" id="1_nyc0q"]
+[ext_resource type="Script" path="res://enemy/standing_enemy.gd" id="1_nyc0q"]
 [ext_resource type="Texture2D" uid="uid://1nwqd34uy43n" path="res://Necromancer_creativekind-Sheet.png" id="2_mvwui"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6bqw"]
