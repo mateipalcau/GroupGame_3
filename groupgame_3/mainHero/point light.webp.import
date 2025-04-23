@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b44yvpirnurps"
-path="res://.godot/imported/background1.png-d564de0a719c0e76ae81e2a3f171dbd3.ctex"
+uid="uid://t4r2vl61dmqu"
+path="res://.godot/imported/point light.webp-77b5a4af587a1b1522b6ab9823b75c28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/map/cave/background1.png"
-dest_files=["res://.godot/imported/background1.png-d564de0a719c0e76ae81e2a3f171dbd3.ctex"]
+source_file="res://mainHero/point light.webp"
+dest_files=["res://.godot/imported/point light.webp-77b5a4af587a1b1522b6ab9823b75c28.ctex"]
 
 [params]
 

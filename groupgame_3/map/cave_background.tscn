@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bx6brgqfb8kbs"]
 
-[ext_resource type="Texture2D" uid="uid://b44yvpirnurps" path="res://sprites/map/cave/background1.png" id="1_fpa41"]
-[ext_resource type="Texture2D" uid="uid://48it36rhie0f" path="res://sprites/map/cave/background2.png" id="2_6r7f6"]
-[ext_resource type="Texture2D" uid="uid://nh8iqsyveil8" path="res://sprites/map/cave/background3.png" id="3_bfkh6"]
-[ext_resource type="Texture2D" uid="uid://b2nbktc2iebm8" path="res://sprites/map/cave/background4a.png" id="4_fjh7p"]
+[ext_resource type="Texture2D" uid="uid://b44yvpirnurps" path="res://map/cave/background1.png" id="1_fpa41"]
+[ext_resource type="Texture2D" uid="uid://48it36rhie0f" path="res://map/cave/background2.png" id="2_6r7f6"]
+[ext_resource type="Texture2D" uid="uid://nh8iqsyveil8" path="res://map/cave/background3.png" id="3_bfkh6"]
+[ext_resource type="Texture2D" uid="uid://b2nbktc2iebm8" path="res://map/cave/background4a.png" id="4_fjh7p"]
 
 [node name="Node2D" type="Node2D"]
 scale = Vector2(5.5238, 4.33205)
@@ -58,3 +58,7 @@ follow_viewport = false
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/bg4"]
 texture_filter = 1
 texture = ExtResource("4_fjh7p")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="ParallaxBackground"]
+scale = Vector2(5.5238, 4.33205)
+color = Color(0.231373, 0.231373, 0.231373, 1)

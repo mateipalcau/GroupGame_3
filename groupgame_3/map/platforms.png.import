@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cewx81346amct"
-path="res://.godot/imported/mainlev_build.png-2f1e556a5148c161a43c45648c3d86ae.ctex"
+uid="uid://bv18ukulmvgl8"
+path="res://.godot/imported/platforms.png-3b4b7dc6f7d20b78f593316a7f567b03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/map/cave/mainlev_build.png"
-dest_files=["res://.godot/imported/mainlev_build.png-2f1e556a5148c161a43c45648c3d86ae.ctex"]
+source_file="res://map/platforms.png"
+dest_files=["res://.godot/imported/platforms.png-3b4b7dc6f7d20b78f593316a7f567b03.ctex"]
 
 [params]
 
