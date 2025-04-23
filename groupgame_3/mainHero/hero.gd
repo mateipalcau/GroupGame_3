@@ -29,6 +29,27 @@ func _process(delta):
 		is_flying = !is_flying
 		velocity = Vector2.ZERO  # Reset velocity when toggling
 
+@export var max_health: int = 100
+var health: int = max_health
+
+func take_damage(amount: int) -> void:
+	flicker_on_hit()
+	health -= amount
+
+	if health <= 0:
+		die()
+		
+func die():
+	print("Player died!")
+	play_die()
+	set_process(false)
+	set_physics_process(false)
+	
+func flicker_on_hit():
+	sprite.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	sprite.modulate = Color.WHITE
+
 func _physics_process(delta: float) -> void:
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")

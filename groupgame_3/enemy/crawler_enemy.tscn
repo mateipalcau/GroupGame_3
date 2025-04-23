@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://ce0n1to1l0h8i"]
+
+[ext_resource type="Script" path="res://enemy/crawler_enemy.gd" id="1_rmyjw"]
+[ext_resource type="Texture2D" uid="uid://sq7p5kydja4h" path="res://dcos8s4-2e6405a6-6ba7-4434-8c01-da1cac0b77e1.png" id="2_smv2l"]
+
+[sub_resource type="Curve2D" id="Curve2D_b3ebc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 168, -8, 0, 0, 0, 0, 0, -8)
+}
+point_count = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvxrd"]
+atlas = ExtResource("2_smv2l")
+region = Rect2(0, 0, 548, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iexcv"]
+atlas = ExtResource("2_smv2l")
+region = Rect2(548, 0, 548, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f44bi"]
+atlas = ExtResource("2_smv2l")
+region = Rect2(1096, 0, 548, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv4yg"]
+atlas = ExtResource("2_smv2l")
+region = Rect2(1644, 0, 548, 552)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnu5d"]
+atlas = ExtResource("2_smv2l")
+region = Rect2(2192, 0, 548, 552)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dto4q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvxrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iexcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f44bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv4yg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnu5d")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kpf0w"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2hav2"]
+radius = 9.0
+
+[node name="CrawlerEnemy" type="Node2D"]
+position = Vector2(112, 88)
+script = ExtResource("1_rmyjw")
+
+[node name="AtkCD" type="Timer" parent="."]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_b3ebc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, -8)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+position = Vector2(0, 28)
+scale = Vector2(2.81327, 2.45554)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
+texture_filter = 1
+position = Vector2(0.214848, -1.90735e-06)
+scale = Vector2(0.02255, 0.0224066)
+sprite_frames = SubResource("SpriteFrames_dto4q")
+animation = &"walk"
+frame_progress = 0.363872
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
+shape = SubResource("CircleShape2D_kpf0w")
+
+[node name="HitBox" type="Area2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CharacterBody2D/HitBox"]
+shape = SubResource("CircleShape2D_2hav2")
+
+[connection signal="timeout" from="AtkCD" to="." method="_on_atk_cd_timeout"]
+[connection signal="body_entered" from="Path2D/PathFollow2D/CharacterBody2D/HitBox" to="." method="_on_hit_box_body_entered"]

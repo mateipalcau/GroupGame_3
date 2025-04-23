@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://kx2eddxdo7n1"]
+
+[ext_resource type="Script" path="res://enemy/bullet_flying_enemy.gd" id="1_wrvsw"]
+[ext_resource type="Texture2D" uid="uid://bkorbyvhkjcmi" path="res://lehudibs_crystal_spear.png" id="2_xpamk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3yq8"]
+size = Vector2(19.4082, 34.9493)
+
+[node name="BulletFlyingEnemy" type="Area2D"]
+rotation = 3.12991
+script = ExtResource("1_wrvsw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(6.55651e-07, 0)
+rotation = -2.35619
+scale = Vector2(1.14043, 0.96875)
+texture = ExtResource("2_xpamk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.50222, -0.427309)
+rotation = -3.11786
+shape = SubResource("RectangleShape2D_x3yq8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1.98818, -1.0233)
+scale = Vector2(1.41349, 2.12555)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
