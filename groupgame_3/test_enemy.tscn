@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://ed3pu5bby323"]
+
+[ext_resource type="PackedScene" uid="uid://cso06f5ac0p2o" path="res://enemy/standing_enemy.tscn" id="1_8glri"]
+[ext_resource type="PackedScene" uid="uid://bqrt3dx5osaut" path="res://mainHero/hero.tscn" id="2_28sa7"]
+[ext_resource type="PackedScene" uid="uid://cikmbtctx7lgq" path="res://platform.tscn" id="2_w0d7h"]
+[ext_resource type="PackedScene" uid="uid://ce0n1to1l0h8i" path="res://enemy/crawler_enemy.tscn" id="3_ll4p7"]
+[ext_resource type="PackedScene" uid="uid://drrq5o6r84s1y" path="res://enemy/flying_enemy.tscn" id="4_43rvl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7e0bd"]
+
+[node name="CrawlerEnemy" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(316, 455)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_7e0bd")
+
+[node name="Hero" parent="." groups=["Player"] instance=ExtResource("2_28sa7")]
+position = Vector2(131, 390)
+
+[node name="FlyingEnemy" parent="." instance=ExtResource("4_43rvl")]
+position = Vector2(448, 163)
+
+[node name="Platform" parent="." instance=ExtResource("2_w0d7h")]
+position = Vector2(793, 350)
+
+[node name="CrawlerEnemy" parent="." instance=ExtResource("3_ll4p7")]
+position = Vector2(710, 357)
+
+[node name="StandingEnemy" parent="." instance=ExtResource("1_8glri")]
+position = Vector2(1083, 360)

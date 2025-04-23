@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bqrt3dx5osaut"]
+[gd_scene load_steps=41 format=3 uid="uid://bqrt3dx5osaut"]
 
 [ext_resource type="Script" path="res://mainHero/hero.gd" id="1_qgchj"]
 [ext_resource type="Texture2D" uid="uid://mkjps2s2nglv" path="res://sprites/heroSprites.png" id="2_l0oxk"]
@@ -263,7 +263,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_0x82e"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qeomo"]
+gradient = SubResource("Gradient_0x82e")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Hero" type="CharacterBody2D"]
+scale = Vector2(0.666667, 0.679012)
 script = ExtResource("1_qgchj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -271,6 +280,7 @@ texture_filter = 1
 shape = SubResource("RectangleShape2D_1r3ed")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(13.5, 13.2545)
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false
@@ -279,7 +289,7 @@ monitoring = false
 position = Vector2(63.5, 0.5)
 shape = SubResource("RectangleShape2D_8bk0b")
 
-[node name="SpriteOffset" type="Node2D" parent="."]
+[node name="SpriteOffset" type="Node2D" parent="." groups=["Player"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOffset"]
 texture_filter = 1
@@ -288,3 +298,12 @@ scale = Vector2(4.43369, 3.50704)
 sprite_frames = SubResource("SpriteFrames_u8gwh")
 animation = &"Attack"
 frame_progress = 0.695237
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-7.62939e-06, 8.83637)
+scale = Vector2(18.2854, 14.6258)
+energy = 1.5
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(0.0295066, 0.0295066, 0.0295066, 0)
+texture = SubResource("GradientTexture2D_qeomo")

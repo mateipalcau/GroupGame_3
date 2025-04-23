@@ -1,3 +1,22 @@
-[gd_scene format=3 uid="uid://tan30rl77rxp"]
+[gd_scene load_steps=5 format=3 uid="uid://tan30rl77rxp"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_0jnn0"]
+[ext_resource type="PackedScene" uid="uid://bqrt3dx5osaut" path="res://mainHero/hero.tscn" id="2_2ohsh"]
+[ext_resource type="PackedScene" uid="uid://detws5kbisji6" path="res://map/cave/caveMap.tscn" id="2_6q8m0"]
+[ext_resource type="PackedScene" uid="uid://bx6brgqfb8kbs" path="res://map/cave_background.tscn" id="3_wybt5"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_0jnn0")
+
+[node name="Hero" parent="." instance=ExtResource("2_2ohsh")]
+position = Vector2(80, -191)
+scale = Vector2(0.786517, 1.16889)
+
+[node name="caveLvl" parent="." instance=ExtResource("2_6q8m0")]
+position = Vector2(-34252, -343)
+
+[node name="cavebg" parent="." instance=ExtResource("3_wybt5")]
+position = Vector2(-404, -323)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.230315, 0.230315, 0.230315, 1)
