@@ -1,6 +1,6 @@
 [gd_scene load_steps=41 format=3 uid="uid://bqrt3dx5osaut"]
 
-[ext_resource type="Script" path="res://mainHero/hero.gd" id="1_qgchj"]
+[ext_resource type="Script" path="res://mainHero/hero (5).gd" id="1_uiodc"]
 [ext_resource type="Texture2D" uid="uid://mkjps2s2nglv" path="res://sprites/heroSprites.png" id="2_l0oxk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r3ed"]
@@ -273,7 +273,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Hero" type="CharacterBody2D"]
 scale = Vector2(0.666667, 0.679012)
-script = ExtResource("1_qgchj")
+script = ExtResource("1_uiodc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
@@ -307,3 +307,7 @@ blend_mode = 2
 shadow_enabled = true
 shadow_color = Color(0.0295066, 0.0295066, 0.0295066, 0)
 texture = SubResource("GradientTexture2D_qeomo")
+
+[node name="Trail" type="Line2D" parent="."]
+top_level = true
+default_color = Color(1, 0.941126, 0.981532, 1)
