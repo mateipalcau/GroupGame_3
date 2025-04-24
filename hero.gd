@@ -27,7 +27,7 @@ var normal_time_scale := 1.0
 func _ready():
 	sprite.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	sprite.play("Idle")
-
+	
 func _physics_process(delta: float) -> void:
 	handle_time_slow()
 
@@ -36,8 +36,10 @@ func _physics_process(delta: float) -> void:
 
 	if is_dashing:
 		handle_dash(delta)
+		$Trail.visible = true
 	else:
 		handle_movement(input_vector, delta)
+		$Trail.visible = false
 
 	move_and_slide()
 	update_animation(input_vector)
@@ -98,8 +100,14 @@ func handle_dash(delta: float):
 func update_animation(input_vector: Vector2):
 	if is_attacking:
 		return
-
-	if abs(input_vector.x) > 0.1 and is_on_floor() and not is_dashing:
+	if is_dashing:
+		play_animation("Dash")
+	elif not is_on_floor():
+		if velocity.y < 0:
+			play_animation("Jump")
+		else:
+			play_animation("Idle")
+	elif abs(input_vector.x) > 0.1 and is_on_floor() and not is_dashing:
 		play_animation("Walk")
 	elif is_on_floor() and not is_dashing:
 		play_animation("Idle")
@@ -110,6 +118,8 @@ func update_animation(input_vector: Vector2):
 func play_animation(anim_name: String):
 	sprite.play(anim_name)
 	match anim_name:
+		"Dash":
+			sprite_offset.position = Vector2(0,5)
 		"Idle":
 			sprite_offset.position = Vector2(0, 0)
 		"Walk":
@@ -118,6 +128,8 @@ func play_animation(anim_name: String):
 			sprite_offset.position = Vector2(2, -2)
 		"Die":
 			sprite_offset.position = Vector2(0, -3)
+		"Jump":
+			sprite_offset.position = Vector2(0,-4)
 
 func start_attack():
 	if is_attacking:

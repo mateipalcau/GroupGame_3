@@ -36,14 +36,14 @@ shape = SubResource("RectangleShape2D_8bk0b")
 [node name="SpriteOffset" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteOffset"]
+process_mode = 3
 position = Vector2(-8, -32)
 scale = Vector2(4.43369, 3.50704)
 sprite_frames = ExtResource("2_8bk0b")
-animation = &"Attack"
-frame = 2
-frame_progress = 1.0
+animation = &"Jump"
 
 [node name="Trail" parent="." instance=ExtResource("3_3htrx")]
+visible = false
 top_level = true
 z_index = -1
 width = 30.0
