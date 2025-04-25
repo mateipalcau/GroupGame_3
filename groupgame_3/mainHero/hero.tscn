@@ -1,6 +1,6 @@
-[gd_scene load_steps=50 format=3 uid="uid://bqrt3dx5osaut"]
+[gd_scene load_steps=41 format=3 uid="uid://bqrt3dx5osaut"]
 
-[ext_resource type="Script" path="res://mainHero/hero (5).gd" id="1_uiodc"]
+[ext_resource type="Script" path="res://mainHero/hero.gd" id="1_qgchj"]
 [ext_resource type="Texture2D" uid="uid://mkjps2s2nglv" path="res://sprites/heroSprites.png" id="2_l0oxk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r3ed"]
@@ -109,22 +109,6 @@ region = Rect2(384, 0, 64, 51)
 atlas = ExtResource("2_l0oxk")
 region = Rect2(448, 0, 64, 51)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m53ac"]
-atlas = ExtResource("2_l0oxk")
-region = Rect2(0, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8td2j"]
-atlas = ExtResource("2_l0oxk")
-region = Rect2(64, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fl53m"]
-atlas = ExtResource("2_l0oxk")
-region = Rect2(128, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pc0i0"]
-atlas = ExtResource("2_l0oxk")
-region = Rect2(192, 256, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_t1acs"]
 atlas = ExtResource("2_l0oxk")
 region = Rect2(0, 76, 64, 36)
@@ -157,22 +141,6 @@ region = Rect2(384, 76, 64, 36)
 atlas = ExtResource("2_l0oxk")
 region = Rect2(448, 76, 64, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oi53i"]
-atlas = ExtResource("2_l0oxk")
-region = Rect2(0, 320, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_isbdt"]
-atlas = ExtResource("2_l0oxk")
-region = Rect2(64, 320, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pei6q"]
-atlas = ExtResource("2_l0oxk")
-region = Rect2(128, 320, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1qqwb"]
-atlas = ExtResource("2_l0oxk")
-region = Rect2(192, 320, 64, 64)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_u8gwh"]
 animations = [{
 "frames": [{
@@ -185,7 +153,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_autl2")
 }],
-"loop": false,
+"loop": true,
 "name": &"Attack",
 "speed": 5.0
 }, {
@@ -232,7 +200,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rp66o")
 }],
-"loop": false,
+"loop": true,
 "name": &"Die",
 "speed": 5.0
 }, {
@@ -267,23 +235,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m53ac")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8td2j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fl53m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pc0i0")
-}],
-"loop": true,
-"name": &"Jump",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_t1acs")
 }, {
 "duration": 1.0,
@@ -310,23 +261,6 @@ animations = [{
 "loop": true,
 "name": &"Walk",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oi53i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_isbdt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pei6q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1qqwb")
-}],
-"loop": true,
-"name": &"fall",
-"speed": 5.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_0x82e"]
@@ -337,15 +271,9 @@ gradient = SubResource("Gradient_0x82e")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Gradient" id="Gradient_lhawc"]
-
 [node name="Hero" type="CharacterBody2D"]
-process_mode = 3
-process_priority = 500
-process_physics_priority = 500
-physics_interpolation_mode = 1
 scale = Vector2(0.666667, 0.679012)
-script = ExtResource("1_uiodc")
+script = ExtResource("1_qgchj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
@@ -368,7 +296,8 @@ texture_filter = 1
 position = Vector2(-8, -32)
 scale = Vector2(4.43369, 3.50704)
 sprite_frames = SubResource("SpriteFrames_u8gwh")
-animation = &"Die"
+animation = &"Attack"
+frame_progress = 0.695237
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-7.62939e-06, 8.83637)
@@ -379,8 +308,7 @@ shadow_enabled = true
 shadow_color = Color(0.0295066, 0.0295066, 0.0295066, 0)
 texture = SubResource("GradientTexture2D_qeomo")
 
-[node name="Trail" type="Line2D" parent="."]
-top_level = true
-points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-default_color = Color(1, 0.941126, 0.981532, 1)
-gradient = SubResource("Gradient_lhawc")
+[node name="ReverseTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ReverseTimer" to="." method="_on_reverse_timer_timeout"]
