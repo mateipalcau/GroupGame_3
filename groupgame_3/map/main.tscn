@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cmavub2k1m16p"]
 
-[ext_resource type="PackedScene" uid="uid://bqrt3dx5osaut" path="res://mainHero/hero.tscn" id="1_w3bhq"]
+[ext_resource type="PackedScene" uid="uid://b3tmryqaq604t" path="res://mainHero/hero.tscn" id="1_w3bhq"]
 [ext_resource type="PackedScene" uid="uid://detws5kbisji6" path="res://map/cave/caveMap.tscn" id="2_sldwm"]
 [ext_resource type="PackedScene" uid="uid://bx6brgqfb8kbs" path="res://map/cave/cave_background.tscn" id="3_28g4v"]
 [ext_resource type="Script" path="res://dialogue/dialogue_trigger.gd" id="4_v5vjp"]
@@ -12,9 +12,6 @@
 radius = 312.026
 
 [node name="Node2D" type="Node2D"]
-
-[node name="Hero" parent="." groups=["Player"] instance=ExtResource("1_w3bhq")]
-position = Vector2(41, 16)
 
 [node name="Node2D" parent="." instance=ExtResource("3_28g4v")]
 position = Vector2(-35465, -258)
@@ -41,8 +38,9 @@ position = Vector2(20, 118)
 [node name="portal" parent="." instance=ExtResource("7_etjuw")]
 position = Vector2(2009, -247)
 scale = Vector2(11.9812, 12.3849)
-script = null
+
+[node name="Hero" parent="." instance=ExtResource("1_w3bhq")]
+position = Vector2(40, 22)
 
 [connection signal="body_entered" from="DialogueTrigger" to="DialogueTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="DialogueTrigger" to="DialogueTrigger" method="_on_body_exited"]
-[connection signal="body_entered" from="portal" to="Hero" method="_on_area_2d_body_entered"]

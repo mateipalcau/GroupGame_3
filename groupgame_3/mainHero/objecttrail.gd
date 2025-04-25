@@ -1,4 +1,4 @@
-extends "res://Hero/"
+extends "res://mainHero/trail.gd"
 
 
 func _get_position():

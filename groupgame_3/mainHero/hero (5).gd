@@ -195,10 +195,7 @@ func _on_animation_finished():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.take_damage(50)
-	elif body.is_in_group("lvlBoss"):
-		print("Portal entered!")
-		get_tree().change_scene_to_file("res://bossRoom/boss_room.tscn")
-		
+	
 func fly_movement():
 	var input_vector = Vector2(
 	Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
@@ -208,4 +205,12 @@ func fly_movement():
 func play_die():
 	sprite.play("Die")
 	sprite_offset.position = Vector2(0, -3) # offset for die
-	
+	get_tree().reload_current_scene()
+
+
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("lvlBoss"):
+		print("Portal entered!")
+		get_tree().change_scene_to_file("res://bossRoom/boss_room.tscn")
