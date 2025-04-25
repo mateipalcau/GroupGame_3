@@ -10,10 +10,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-var dialogue_scene := preload("res://dialogue_box.tscn")
-@export var dialogue_text: String = "Hello from the area!"
+var dialogue_scene := preload("res://dialogue/dialogue_box.tscn")
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		var dialogue = get_parent().get_node("DialogueBox")
-		dialogue.show_dialogue("Good evening. Welcome to the game............(Complete here the text you want)" , body.global_position)
+		dialogue.show_dialogue(" Agh!! Where am I.. I can't seem to leave. Maybe this artifact I found can help me.It's power is useful..." , body.global_position)
+	

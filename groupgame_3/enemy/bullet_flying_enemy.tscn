@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3yq8"]
 size = Vector2(19.4082, 34.9493)
 
-[node name="BulletFlyingEnemy" type="Area2D"]
+[node name="BulletFlyingEnemy" type="Area2D" groups=["enemies"]]
 rotation = 3.12991
 script = ExtResource("1_wrvsw")
 

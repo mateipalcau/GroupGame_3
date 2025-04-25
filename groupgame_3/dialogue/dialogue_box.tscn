@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccxwkxxstjuws"]
 
-[ext_resource type="Script" path="res://dialogue_box.gd" id="1_lasfs"]
+[ext_resource type="Script" path="res://dialogue/dialogue_box.gd" id="1_3r3hv"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_lasfs")
+script = ExtResource("1_3r3hv")
 
 [node name="Panel" type="NinePatchRect" parent="."]
 layout_mode = 1
