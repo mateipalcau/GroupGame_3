@@ -20,8 +20,8 @@ layer_0/tile_data = PackedInt32Array(-458585, 1769472, 21, -393049, 1769472, 20,
 position = Vector2(-205, 19)
 
 [node name="DialogueTrigger" type="Area2D" parent="."]
-position = Vector2(186, -52)
-scale = Vector2(3.02784, 2.9974)
+position = Vector2(-24, -4)
+scale = Vector2(1.26039, 0.764096)
 script = ExtResource("4_bjdu7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTrigger"]
@@ -30,11 +30,14 @@ shape = SubResource("CircleShape2D_2ci2w")
 
 [node name="DialogueBox" parent="." instance=ExtResource("5_3t4sg")]
 top_level = true
-offset_left = -200.0
-offset_top = -127.0
-offset_right = -160.0
-offset_bottom = -87.0
-scale = Vector2(8.42214, 2.21286)
+texture_filter = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_right = 0.0
+offset_bottom = -16.0
+grow_vertical = 2
 
 [node name="Boss_Platform" parent="." instance=ExtResource("5_8qo4n")]
 position = Vector2(2254, -347)

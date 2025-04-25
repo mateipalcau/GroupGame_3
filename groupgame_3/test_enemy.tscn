@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cso06f5ac0p2o" path="res://enemy/standing_enemy.tscn" id="1_8glri"]
 [ext_resource type="PackedScene" uid="uid://bqrt3dx5osaut" path="res://mainHero/hero.tscn" id="2_28sa7"]
-[ext_resource type="PackedScene" uid="uid://cikmbtctx7lgq" path="res://map/platform.tscn" id="2_w0d7h"]
+[ext_resource type="PackedScene" uid="uid://bpuxsod3yfndg" path="res://map/platform.tscn" id="2_w0d7h"]
 [ext_resource type="PackedScene" uid="uid://ce0n1to1l0h8i" path="res://enemy/crawler_enemy.tscn" id="3_ll4p7"]
 [ext_resource type="PackedScene" uid="uid://drrq5o6r84s1y" path="res://enemy/flying_enemy.tscn" id="4_43rvl"]
 

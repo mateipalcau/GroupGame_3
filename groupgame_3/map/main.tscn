@@ -41,7 +41,6 @@ position = Vector2(20, 118)
 [node name="portal" parent="." instance=ExtResource("7_etjuw")]
 position = Vector2(2009, -247)
 scale = Vector2(11.9812, 12.3849)
-script = null
 
 [connection signal="body_entered" from="DialogueTrigger" to="DialogueTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="DialogueTrigger" to="DialogueTrigger" method="_on_body_exited"]
