@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://detws5kbisji6"]
+[gd_scene load_steps=7 format=3 uid="uid://detws5kbisji6"]
 
 [ext_resource type="Texture2D" uid="uid://cewx81346amct" path="res://map/cave/mainlev_build.png" id="1_4dglj"]
+[ext_resource type="PackedScene" uid="uid://byjogvkx47nhh" path="res://map/portal.tscn" id="3_3ncvl"]
 [ext_resource type="PackedScene" uid="uid://bx6brgqfb8kbs" path="res://map/cave/cave_background.tscn" id="4_td1e3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5armg"]
@@ -479,3 +480,7 @@ scale = Vector2(1.15578, 0.523628)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[node name="Area2D2" parent="." instance=ExtResource("3_3ncvl")]
+position = Vector2(8139.29, -958.244)
+scale = Vector2(6.03194, 8.24924)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b46irln0vr1jw"]
+[gd_scene load_steps=6 format=3 uid="uid://b46irln0vr1jw"]
 
-[ext_resource type="PackedScene" uid="uid://bqrt3dx5osaut" path="res://mainHero/hero.tscn" id="1_tyxir"]
+[ext_resource type="PackedScene" uid="uid://b3tmryqaq604t" path="res://mainHero/hero.tscn" id="1_tyxir"]
 [ext_resource type="PackedScene" uid="uid://detws5kbisji6" path="res://map/cave/caveMap.tscn" id="2_q2y3x"]
-[ext_resource type="PackedScene" path="res://map/cave_background.tscn" id="3_8aarq"]
 [ext_resource type="Script" path="res://dialogue_trigger.gd" id="4_waj77"]
 [ext_resource type="PackedScene" uid="uid://bvs1bu400gabf" path="res://dialogue_box.tscn" id="5_676nd"]
 
@@ -11,14 +10,8 @@ radius = 312.026
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Hero" parent="." groups=["Player"] instance=ExtResource("1_tyxir")]
+[node name="Hero" parent="." instance=ExtResource("1_tyxir")]
 position = Vector2(41, 16)
-
-[node name="TileMap" parent="." instance=ExtResource("2_q2y3x")]
-position = Vector2(-35228, -257)
-
-[node name="Node2D" parent="." instance=ExtResource("3_8aarq")]
-position = Vector2(-35465, -258)
 
 [node name="DialogueTrigger" type="Area2D" parent="."]
 position = Vector2(449, -13)
@@ -32,6 +25,9 @@ offset_left = 394.0
 offset_top = -117.0
 offset_right = 434.0
 offset_bottom = -77.0
+
+[node name="TileMap" parent="." instance=ExtResource("2_q2y3x")]
+position = Vector2(38, 118)
 
 [connection signal="body_entered" from="DialogueTrigger" to="DialogueTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="DialogueTrigger" to="DialogueTrigger" method="_on_body_exited"]
