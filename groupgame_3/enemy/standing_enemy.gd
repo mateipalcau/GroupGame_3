@@ -7,7 +7,6 @@ extends CharacterBody2D
 @onready var shooting_point = $ShootingPoint
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
-
 @export var damage: int = 20
 
 var projectile = preload("res://enemy/bullet_enemy.tscn")
@@ -16,6 +15,10 @@ var gravity = ProjectSettings.get("physics/2d/default_gravity")
 var health: int = 50  
 var player: Node2D = null
 var directions = [Vector2.LEFT] 
+
+# === NEW: Freezing variables ===
+var is_frozen: bool = false
+var freeze_shooting: bool = false
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
@@ -38,6 +41,9 @@ func shoot_randomly() -> void:
 		var wait_time = randf_range(0.75, 1.5) 
 		await get_tree().create_timer(wait_time).timeout
 		
+		if is_frozen:
+			continue  # Don't shoot if frozen
+
 		if not visible_on_screen_notifier_2d.is_on_screen():
 			continue  
 
@@ -62,6 +68,9 @@ func update_direction():
 			animated_sprite_2d.flip_h = true
 
 func shoot():
+	if is_frozen:
+		return  # Don't shoot if frozen
+
 	for direction in directions:
 		var instance = projectile.instantiate()
 		instance.global_position = shooting_point.global_position
@@ -71,6 +80,9 @@ func shoot():
 			instance.set_direction(direction)
 
 func _physics_process(delta: float) -> void:
+	if is_frozen:
+		return  # Stop physics movement when frozen
+
 	if animated_sprite_2d.animation != "shoot":
 		animated_sprite_2d.play("idle")
 
@@ -80,4 +92,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_jump_timer_timeout() -> void:
-	velocity.y = -500
+	if not is_frozen:
+		velocity.y = -500
+
+# === NEW: Freeze and Unfreeze functions ===
+func freeze():
+	is_frozen = true
+	animated_sprite_2d.pause()
+
+func unfreeze():
+	is_frozen = false
+	animated_sprite_2d.play("idle")

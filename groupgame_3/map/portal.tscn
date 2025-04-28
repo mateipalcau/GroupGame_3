@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://byjogvkx47nhh"]
+[gd_scene load_steps=11 format=3 uid="uid://bttfo0pntvf45"]
 
+[ext_resource type="Script" path="res://map/portal.gd" id="1_0ek5t"]
 [ext_resource type="Texture2D" uid="uid://bwoqxn3jqcyxp" path="res://map/cave/Dimensional_Portal.png" id="2_2qyje"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kn6lo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kqhqi"]
 atlas = ExtResource("2_2qyje")
@@ -54,11 +53,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Area2D" type="Area2D" groups=["lvlBoss"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kn6lo"]
+radius = 1302.0
+height = 17440.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_kn6lo")
+[node name="Portal" type="Area2D" groups=["lvlBoss"]]
+script = ExtResource("1_0ek5t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(6.21875, 10.8594)
 sprite_frames = SubResource("SpriteFrames_jcgmh")
-frame_progress = 0.709123
+frame_progress = 0.485807
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1264, 105)
+shape = SubResource("CapsuleShape2D_kn6lo")

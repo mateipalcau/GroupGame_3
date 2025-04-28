@@ -286,7 +286,7 @@ height = 124.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_nwpth"]
 radius = 75.1665
 
-[node name="Boss" type="CharacterBody2D"]
+[node name="Boss" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_l3vk4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

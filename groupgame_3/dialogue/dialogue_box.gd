@@ -12,7 +12,7 @@ func show_dialogue(new_sentence: String ,player_position: Vector2):
 	$Panel/RichTextLabel.clear()
 	$Panel.visible = true
 	
-	global_position = player_position + Vector2(50, -100)
+	global_position = player_position + Vector2(0,0)
 	
 	$Timer.start()
 

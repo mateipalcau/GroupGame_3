@@ -1,23 +1,76 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmavub2k1m16p"]
+[gd_scene load_steps=21 format=3 uid="uid://cmavub2k1m16p"]
 
-[ext_resource type="PackedScene" uid="uid://bqrt3dx5osaut" path="res://mainHero/hero.tscn" id="1_w3bhq"]
+[ext_resource type="Script" path="res://map/main.gd" id="1_javfk"]
+[ext_resource type="PackedScene" uid="uid://b3tmryqaq604t" path="res://mainHero/hero.tscn" id="1_w3bhq"]
 [ext_resource type="PackedScene" uid="uid://detws5kbisji6" path="res://map/cave/caveMap.tscn" id="2_sldwm"]
-[ext_resource type="PackedScene" uid="uid://bx6brgqfb8kbs" path="res://map/cave/cave_background.tscn" id="3_28g4v"]
 [ext_resource type="Script" path="res://dialogue/dialogue_trigger.gd" id="4_v5vjp"]
 [ext_resource type="PackedScene" uid="uid://ccxwkxxstjuws" path="res://dialogue/dialogue_box.tscn" id="5_h8j2n"]
 [ext_resource type="PackedScene" uid="uid://drrq5o6r84s1y" path="res://enemy/flying_enemy.tscn" id="6_4thd1"]
-[ext_resource type="PackedScene" uid="uid://byjogvkx47nhh" path="res://map/portal.tscn" id="7_etjuw"]
+[ext_resource type="Script" path="res://map/kill_zone.gd" id="7_jmkki"]
+[ext_resource type="Script" path="res://map/next_level.gd" id="9_85q24"]
+[ext_resource type="Texture2D" uid="uid://bwoqxn3jqcyxp" path="res://map/cave/Dimensional_Portal.png" id="9_wn0pi"]
+[ext_resource type="PackedScene" uid="uid://cso06f5ac0p2o" path="res://enemy/standing_enemy.tscn" id="10_716be"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4p6a0"]
 radius = 312.026
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o27x8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6yvo"]
+atlas = ExtResource("9_wn0pi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5tqq"]
+atlas = ExtResource("9_wn0pi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7jvv"]
+atlas = ExtResource("9_wn0pi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk8g6"]
+atlas = ExtResource("9_wn0pi")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gshrs"]
+atlas = ExtResource("9_wn0pi")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6p3vc"]
+atlas = ExtResource("9_wn0pi")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yg6ep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6yvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5tqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7jvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk8g6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gshrs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6p3vc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7p86"]
+size = Vector2(245, 322)
+
 [node name="Node2D" type="Node2D"]
-
-[node name="Hero" parent="." groups=["Player"] instance=ExtResource("1_w3bhq")]
-position = Vector2(41, 16)
-
-[node name="Node2D" parent="." instance=ExtResource("3_28g4v")]
-position = Vector2(-35465, -258)
+script = ExtResource("1_javfk")
 
 [node name="DialogueTrigger" type="Area2D" parent="."]
 position = Vector2(449, -13)
@@ -36,13 +89,41 @@ offset_bottom = -77.0
 position = Vector2(1602, -422)
 
 [node name="caveMap" parent="." instance=ExtResource("2_sldwm")]
-position = Vector2(20, 118)
+position = Vector2(0, 0)
 
-[node name="portal" parent="." instance=ExtResource("7_etjuw")]
-position = Vector2(2009, -247)
-scale = Vector2(11.9812, 12.3849)
-script = null
+[node name="KillZone" type="Area2D" parent="."]
+position = Vector2(4375, 3628)
+script = ExtResource("7_jmkki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("WorldBoundaryShape2D_o27x8")
+
+[node name="Timer" type="Timer" parent="KillZone"]
+one_shot = true
+
+[node name="Hero" parent="." groups=["Player"] instance=ExtResource("1_w3bhq")]
+position = Vector2(246, -71)
+
+[node name="NextLevel" type="Area2D" parent="."]
+position = Vector2(19191, -1644)
+script = ExtResource("9_85q24")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NextLevel"]
+position = Vector2(102.5, 6)
+scale = Vector2(7.40625, 9.8125)
+sprite_frames = SubResource("SpriteFrames_yg6ep")
+autoplay = "default"
+frame_progress = 0.608612
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevel"]
+position = Vector2(186.5, 2)
+shape = SubResource("RectangleShape2D_x7p86")
+
+[node name="StandingEnemy" parent="." instance=ExtResource("10_716be")]
+position = Vector2(2299, -1666)
 
 [connection signal="body_entered" from="DialogueTrigger" to="DialogueTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="DialogueTrigger" to="DialogueTrigger" method="_on_body_exited"]
-[connection signal="body_entered" from="portal" to="Hero" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
+[connection signal="timeout" from="KillZone/Timer" to="KillZone" method="_on_timer_timeout"]
+[connection signal="body_entered" from="NextLevel" to="." method="_on_next_level_body_entered"]

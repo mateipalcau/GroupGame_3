@@ -15,15 +15,27 @@ var player: Node2D = null
 @onready var shooting_point: Node2D = $ShootingPoint
 @onready var detection_area: Area2D = $Area2D  
 
+
+var is_frozen: bool = false
+var saved_speed: float = 100.0
+
+
 func _ready():
+	
+	await get_tree().process_frame  
 	start_position = global_position
 	sprite.play("fly")
 	shoot_timer.wait_time = shoot_cooldown
 	shoot_timer.one_shot = true
 	detection_area.body_entered.connect(_on_area_2d_body_entered)
 	detection_area.body_exited.connect(_on_area_2d_body_exited)
+	saved_speed = speed  
 
 func _physics_process(delta):
+	$AnimatedSprite2D.modulate = Color(10,10,10)
+	if is_frozen:
+		return  
+
 	patrol(delta)
 	if player and can_shoot:
 		shoot_at_player()
@@ -62,3 +74,18 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body == player:
 		player = null
+
+
+
+func freeze():
+	is_frozen = true
+	saved_speed = speed
+	speed = 0
+	sprite.pause()  
+	shoot_timer.stop()  
+
+func unfreeze():
+	is_frozen = false
+	speed = saved_speed
+	sprite.play("fly")  
+	shoot_timer.start()

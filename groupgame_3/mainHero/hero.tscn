@@ -1,13 +1,15 @@
-[gd_scene load_steps=41 format=3 uid="uid://bqrt3dx5osaut"]
+[gd_scene load_steps=44 format=3 uid="uid://b3tmryqaq604t"]
 
 [ext_resource type="Script" path="res://mainHero/hero.gd" id="1_qgchj"]
 [ext_resource type="Texture2D" uid="uid://mkjps2s2nglv" path="res://sprites/heroSprites.png" id="2_l0oxk"]
+[ext_resource type="AudioStream" uid="uid://dj855myws745q" path="res://mixkit-short-laser-gun-shot-1670.wav" id="3_60x1b"]
+[ext_resource type="AudioStream" uid="uid://pyvqoo322x10" path="res://sword-sound-260274.mp3" id="4_xe14v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r3ed"]
-size = Vector2(124, 98)
+size = Vector2(105.5, 98)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bk0b"]
-size = Vector2(81, 101)
+size = Vector2(104.5, 101)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3htrx"]
 atlas = ExtResource("2_l0oxk")
@@ -271,22 +273,26 @@ gradient = SubResource("Gradient_0x82e")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gj66j"]
+bg_color = Color(0.494118, 0, 0, 0.992157)
+
 [node name="Hero" type="CharacterBody2D"]
 scale = Vector2(0.666667, 0.679012)
 script = ExtResource("1_qgchj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
+position = Vector2(-9.25001, 0)
 shape = SubResource("RectangleShape2D_1r3ed")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(13.5, 13.2545)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="."]
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(63.5, 0.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(75.25, 0.5)
 shape = SubResource("RectangleShape2D_8bk0b")
 
 [node name="SpriteOffset" type="Node2D" parent="." groups=["Player"]]
@@ -296,8 +302,8 @@ texture_filter = 1
 position = Vector2(-8, -32)
 scale = Vector2(4.43369, 3.50704)
 sprite_frames = SubResource("SpriteFrames_u8gwh")
-animation = &"Attack"
-frame_progress = 0.695237
+animation = &"Idle"
+autoplay = "Idle"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-7.62939e-06, 8.83637)
@@ -311,4 +317,33 @@ texture = SubResource("GradientTexture2D_qeomo")
 [node name="ReverseTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="FreezeTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -39.0
+offset_top = -75.1091
+offset_right = 31.0
+offset_bottom = -65.1091
+theme_override_styles/fill = SubResource("StyleBoxFlat_gj66j")
+show_percentage = false
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(45, 1.47273)
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(-64.5, 0)
+
+[node name="StopTimer" type="Timer" parent="."]
+wait_time = 7.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_60x1b")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xe14v")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="timeout" from="ReverseTimer" to="." method="_on_reverse_timer_timeout"]
+[connection signal="timeout" from="FreezeTimer" to="." method="_on_freeze_timer_timeout"]
+[connection signal="timeout" from="StopTimer" to="." method="_on_stop_timer_timeout"]

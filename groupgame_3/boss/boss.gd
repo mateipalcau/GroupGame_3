@@ -36,6 +36,9 @@ var was_in_air := false
 var player = null
 var can_attack = true
 
+var is_frozen: bool = false
+var freeze_shooting: bool = false
+
 var directions = [Vector2.LEFT]
 @export var health: int = 50  
 
@@ -46,11 +49,22 @@ var teleport_points = [
 	Vector2(1500, -625),
 	
 ]
-#this needs to be changed to the coordinates of the points from the platforms where the boss will teleport
+
+func freeze():
+	is_frozen = true
+	animated_sprite_2d.pause()
+
+func unfreeze():
+	is_frozen = false
+	animated_sprite_2d.play("idle")
+
 func enemy():
 	pass
 
 func take_damage(damage):
+	if health>0:
+		teleport_randomly()
+		teleport_timer.start()
 	animated_sprite_2d.play("hurt")
 	health -= damage
 	print("enemy hit")
@@ -73,6 +87,8 @@ func _ready():
 	teleport_timer.start()
 
 func _on_timer_timeout(): 
+	if is_frozen:
+		return  
 	animated_sprite_2d.play("shoot")  
 	shoot()  
 	
@@ -106,6 +122,9 @@ func spawn_projectile(position: Vector2, direction: Vector2):
 		instance.set_direction(direction) 
 
 func _physics_process(delta: float) -> void:
+	if is_frozen:
+		return  
+	
 	if animated_sprite_2d.animation != "attack" and animated_sprite_2d.animation != "death" and animated_sprite_2d.animation != "hurt":  
 		animated_sprite_2d.play("move")
 		
@@ -138,7 +157,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if not was_in_air and not on_ground:
-		was_in_air = true  # Boss is in the air now
+		was_in_air = true  
 		
 
 		
@@ -169,6 +188,8 @@ func _on_jump_timer_timeout() -> void:
 		direction = randi() % 2 * 2 - 1     
 
 func _on_teleport_timer_timeout() -> void:
+	if is_frozen:
+		return
 	teleport_randomly()
 	
 func teleport_randomly():

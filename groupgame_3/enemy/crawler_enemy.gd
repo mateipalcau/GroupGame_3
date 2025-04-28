@@ -7,24 +7,32 @@ extends Node2D
 @export var atk_cd_time: int
 var atk_cd: bool = false
 
+# NEW: freezing variables
+var is_frozen: bool = false
+var saved_speed: int = 2
 
 func _ready() -> void:
 	$AtkCD.wait_time = atk_cd_time
 	sprite.play("walk")
 	sprite.flip_v = false
-	
+	saved_speed = speed  # Save the original speed
+
 func _process(delta: float) -> void:
 	if health <= 0:
 		queue_free()
+		
+	if is_frozen:
+		return  # Stop moving and attacking if frozen
+
 	if path_follow.progress_ratio > 0.5:
 		sprite.flip_h = false
 	else:
 		sprite.flip_h = true
+
 	path_follow.progress += speed
+
 	if atk_cd:
 		$Path2D/PathFollow2D/CharacterBody2D/CollisionShape2D.disabled = true
-
-
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and not atk_cd:
@@ -32,8 +40,19 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 			body.take_damage(10)
 		atk_cd = true
 		$AtkCD.start()
-	
-
 
 func _on_atk_cd_timeout() -> void:
 	atk_cd = false
+
+# === NEW: Freeze and Unfreeze functions ===
+
+func freeze():
+	is_frozen = true
+	saved_speed = speed
+	speed = 0
+	sprite.pause()  # Optional: Pause the animation
+
+func unfreeze():
+	is_frozen = false
+	speed = saved_speed
+	sprite.play("walk")  # Optional: Resume the animation

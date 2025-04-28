@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://ce0n1to1l0h8i"]
+[gd_scene load_steps=13 format=3 uid="uid://ce0n1to1l0h8i"]
 
 [ext_resource type="Script" path="res://enemy/crawler_enemy.gd" id="1_rmyjw"]
 [ext_resource type="Texture2D" uid="uid://sq7p5kydja4h" path="res://dcos8s4-2e6405a6-6ba7-4434-8c01-da1cac0b77e1.png" id="2_smv2l"]
+[ext_resource type="PackedScene" uid="uid://bpuxsod3yfndg" path="res://map/platform.tscn" id="2_y18db"]
 
 [sub_resource type="Curve2D" id="Curve2D_b3ebc"]
 _data = {
@@ -58,9 +59,12 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_2hav2"]
 radius = 9.0
 
-[node name="CrawlerEnemy" type="Node2D"]
+[node name="CrawlerEnemy" type="Node2D" groups=["Enemies"]]
 position = Vector2(112, 88)
 script = ExtResource("1_rmyjw")
+
+[node name="Platform" parent="." instance=ExtResource("2_y18db")]
+position = Vector2(84, -7)
 
 [node name="AtkCD" type="Timer" parent="."]
 
