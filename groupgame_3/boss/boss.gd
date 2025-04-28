@@ -75,6 +75,7 @@ func take_damage(damage):
 func die(): 
 	animated_sprite_2d.play("death")
 	death_timer.start()
+	get_tree().change_scene_to_file("res://victory screen.tscn")
 	
 
 func _ready():

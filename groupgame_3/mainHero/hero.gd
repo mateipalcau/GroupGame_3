@@ -90,6 +90,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("full"):
 		health = max_health
 		health_bar.value = health
+		
+	if Input.is_action_just_pressed("100shot"):
+		health = max_health
+		health_bar.value = health
 	
 	
 	

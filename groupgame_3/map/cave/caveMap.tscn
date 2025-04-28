@@ -547,7 +547,7 @@ scale = Vector2(1.15578, 0.523628)
 color = Color(0.241156, 0.241156, 0.241156, 1)
 
 [node name="Hero" parent="." groups=["Player"] instance=ExtResource("3_e7lby")]
-position = Vector2(49.2779, -251.971)
+position = Vector2(55.4931, -256.287)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(8577.91, -931.266)
@@ -564,7 +564,6 @@ shape = SubResource("RectangleShape2D_vw8c7")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ksj8o")
-volume_db = -25.0
 autoplay = true
 max_distance = 1e+07
 parameters/looping = true

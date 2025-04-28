@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqmcytyduya8m"]
+
+[ext_resource type="Script" path="res://victory_screen.gd" id="1_yti8j"]
+[ext_resource type="FontFile" uid="uid://lu4k6vwpkp6u" path="res://Kamikaze3DGradient-Italic.ttf" id="2_4ul6o"]
+[ext_resource type="Texture2D" uid="uid://dxarvet2a43nj" path="res://new background.png" id="2_g0coh"]
+
+[node name="CenterContainer" type="CenterContainer"]
+custom_minimum_size = Vector2(300, 16)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -314.0
+offset_top = -226.0
+offset_right = -314.0
+offset_bottom = -226.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.63158, 1.81582)
+script = ExtResource("1_yti8j")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_g0coh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 21
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_4ul6o")
+text = "Congratulations  You win "
+
+[node name="main menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4ul6o")
+text = "Main Menu "
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4ul6o")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/main menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
